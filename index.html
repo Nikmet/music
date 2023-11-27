@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Music</title>
+    </head>
+    <body>
+        <script>
+            function renderMusic() {
+                fetch("http://127.0.0.1:80/music/hs/info/getMusic")
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(song => {
+                            const html = `
+                    <p>Исполнитель: ${song.singer}</p>
+                    <p>Трек: ${song.song}</p>
+                `;
+                            document.body.insertAdjacentHTML("beforeend", html);
+                        });
+                    });
+            }
+
+            renderMusic();
+        </script>
+    </body>
+</html>
